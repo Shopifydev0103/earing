@@ -171,6 +171,18 @@
   align-self: flex-end;
   grid-row-start: 3;
   justify-self: flex-start;
+  display: none;
+}
+.custom-showmore {
+  font-family: Poppins;
+font-size: 18px;
+font-weight: 400;
+line-height: 26px;
+letter-spacing: 0.06em;
+text-align: center;
+color: black;
+text-decoration: none;
+
 }
 
 .card__badge.top {
@@ -364,6 +376,7 @@
 
 .card-information {
   width: 100%;
+  text-align: center;
 }
 
 .card-information > * {

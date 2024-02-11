@@ -115,6 +115,9 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   padding-left: 3rem;
   padding-right: 3rem;
 }
+.padding-60-120 {
+  padding: 60px 120px;
+}
 
 @media screen and (min-width: 750px) {
   .page-width {
@@ -152,8 +155,8 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   }
 
   .page-width-desktop {
-    max-width: var(--page-width);
-    padding: 0 5rem;
+    /* max-width: var(--page-width); */
+    /* padding: 0 5rem; */
   }
 }
 
@@ -564,6 +567,13 @@ hr {
   text-decoration: none;
   color: currentColor;
   display: block;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: black;
 }
 
 .placeholder {
