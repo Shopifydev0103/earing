@@ -1,0 +1,54 @@
+{{ 'multi-img.css' | asset_url | stylesheet_tag }}
+
+
+<div class="page-width multi-img">
+  <div class="container padding-60-200">
+    <div class="left">
+      {% if section.settings.left_img %}
+        <img src="{{ section.settings.left_img | img_url: "master" }}">
+      {% endif %}
+    </div>
+    <div class="right">
+    {%- for block in section.blocks -%}
+        {% if block.type == "block1" %}
+            {%- if block.settings.pice_img -%}
+                <img src="{{ block.settings.pice_img | img_url: "master" }}">
+            {%- endif -%}
+        {% endif %}
+    {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "multi-intro-img",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "left_img",
+      "label": "LeftImage"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block1",
+      "name": "pice Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "pice_img",
+          "label": "Right Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "multi-img"
+    }
+  ]
+  
+}
+{% endschema %}

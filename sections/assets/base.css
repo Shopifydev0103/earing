@@ -97,6 +97,19 @@ html.no-js .no-js-hidden {
   max-width: 1920px;
   margin: 0 auto;
 }
+.multi-img .container {
+  display: flex;
+  gap: 30px;
+}
+.multi-img .left {
+  width: 50%;
+}
+.multi-img .right {
+  width: 50%;
+  display: grid;
+  grid: 48.5% / auto auto;
+  gap: 30px;
+}
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
@@ -115,8 +128,8 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   padding-left: 3rem;
   padding-right: 3rem;
 }
-.padding-60-120 {
-  padding: 60px 120px;
+.padding-60-200 {
+  padding: 60px 200px;
 }
 
 @media screen and (min-width: 750px) {

@@ -67,10 +67,92 @@
         "padding_top": 44,
         "padding_bottom": 32
       }
+    },
+    "rich_text_p6yaTM": {
+      "type": "rich-text",
+      "blocks": {
+        "text_wn6FBP": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Minimalism and simplicity combined with interesting shapes. Choose a piece of jewelry that you like.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_wn6FBP"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "multirow_BgiV77": {
+      "type": "multirow",
+      "blocks": {
+        "row_fYdLfV": {
+          "type": "row",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/gift-card_1.png",
+            "caption": "",
+            "heading": "Gift Card",
+            "text": "<p>We don’t have any ideas what to give ourselves, or are you doubting your choice?A gift certificate is a modern way to bring in friends and relatives, to pick out those who are dear to your heart.<\/p>",
+            "button_label": "Buy Now",
+            "button_link": ""
+          }
+        },
+        "row_bipdEV": {
+          "type": "row",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Mask_group_1.png",
+            "caption": "",
+            "heading": "Hurry! Sale 50%",
+            "text": "<p>We don’t have any ideas what to give ourselves, or are you doubting your choice?A gift certificate is a modern way to bring in friends and relatives, to pick out those who are dear to your heart.<\/p>",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "row_qBKj8y": {
+          "type": "row",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Mask_group.png",
+            "caption": "",
+            "heading": "Newsletter",
+            "text": "<p>Sign up for exclusive deals and early access to new products.<\/p>",
+            "button_label": "Subscribe",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_fYdLfV",
+        "row_bipdEV",
+        "row_qBKj8y"
+      ],
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "secondary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "image_layout": "alternate-left",
+        "section_color_scheme": "",
+        "row_color_scheme": "",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "image_banner",
-    "featured_collection"
+    "featured_collection",
+    "rich_text_p6yaTM",
+    "multirow_BgiV77"
   ]
 }

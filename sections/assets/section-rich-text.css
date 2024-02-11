@@ -1,6 +1,16 @@
 .rich-text {
   z-index: 1;
 }
+.rich-text__text p {
+font-family: Poppins;
+font-size: 60px;
+font-weight: 600;
+line-height: 70px;
+letter-spacing: 0.02em;
+text-align: left;
+color: black;
+
+}
 
 .rich-text__wrapper {
   display: flex;
@@ -37,7 +47,7 @@
 
 @media screen and (min-width: 990px) {
   .rich-text__blocks {
-    max-width: 78rem;
+    max-width: 100%;
   }
 }
 
