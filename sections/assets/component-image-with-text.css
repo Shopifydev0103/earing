@@ -338,6 +338,8 @@
 
 .image-with-text__content > * + * {
   margin-top: 2rem;
+  color: white;
+
 }
 
 .image-with-text__content > .image-with-text__text:empty ~ a {
@@ -361,15 +363,29 @@
 
 .image-with-text__content .image-with-text__text + .button {
   margin-top: 3rem;
+  background: black;
 }
 
 .image-with-text__heading {
   margin-bottom: 0;
+font-family: Poppins;
+font-size: 48px;
+font-weight: 600;
+line-height: 64px;
+letter-spacing: 0.02em;
+text-align: left;
+color: black;
 }
 
 .image-with-text__text p {
-  margin-top: 0;
-  margin-bottom: 1rem;
+font-family: Poppins;
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+color: black;
+
 }
 
 @media screen and (max-width: 749px) {

@@ -1,0 +1,52 @@
+<div class="page-width img-text-button">
+    <div class="container">
+      {% style %}
+        .img-text-button .container {
+            background: url("{{ section.settings.bg_img | img_url: "master" }}")
+        }
+      {% endstyle %}
+      <div class="text-btn-wrapper">
+        {% if section.settings.content_text %}
+            <p class="text">{{ section.settings.content_text }}</p>
+        {% endif %}
+        {% if section.settings.button_label %}
+            <a href="{{ section.settings.button_url }}"><span>{{ section.settings.button_label }}</span></a>
+        {% endif %}
+    </div>
+    </div>
+  </div>
+  
+  {% schema %}
+  {
+    "name": "img-text-button",
+    "class": "section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bg_img",
+        "label": "background image"
+      },
+      {
+        "type": "text",
+        "id": "content_text",
+        "label": "text"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "button label"
+      },
+      {
+        "type": "url",
+        "id": "button_url",
+        "label": "button url"
+      }
+    ],
+    "presets": [
+      {
+        "name": "img-text-btn"
+      }
+    ]
+  }
+  {% endschema %}
+  
