@@ -1,5 +1,13 @@
 {{ 'feature-product.css' | asset_url | stylesheet_tag }}
 
+
+{% style %}
+    .feature-product__image {
+    background: url("{{ section.settings.background_img | img_url: "master" }}");
+    background-size: cover;
+}
+{% endstyle %}
+
 <div class="feature-product">
     <div class="feature-product-wrapper page-width padding-60-200">
         <div class="feature-product__image">
@@ -39,6 +47,11 @@
                 "type": "product",
                 "id": "product",
                 "label": "Select product"
+            },
+            {
+                "type": "image_picker",
+                "id": "background_img",
+                "label": "Background Image"
             }
            
           ],
