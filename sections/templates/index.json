@@ -163,7 +163,8 @@
     "gift_card_YQYYRd": {
       "type": "gift-card",
       "settings": {
-        "product": "gift-card"
+        "product": "gift-card",
+        "background_img": "shopify:\/\/shop_images\/f1613bc8384494038ab8307b40a70053.jpg"
       }
     },
     "multirow_BgiV77": {
