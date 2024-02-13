@@ -138,6 +138,21 @@
   transform: perspective(0);
 }
 
+@media (max-width: 1440px) {
+  .banner-text-wrapper .heading {
+    font-size: 50px;
+  }
+}
+@media (max-width: 768px) {
+  .banner-text-wrapper .heading {
+    font-size: 25px;
+  }
+  .banner-link-buttom {
+    width: 120px;
+    height: 32px;
+  }
+}
+
 @media only screen and (max-width: 749px) {
   .banner--content-align-mobile-right .banner__box {
     text-align: right;

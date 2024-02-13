@@ -332,7 +332,7 @@
 
 @media screen and (min-width: 990px) {
   .image-with-text__content {
-    padding: 6rem 7rem 7rem;
+    padding: 80px ;
   }
 }
 
@@ -384,18 +384,28 @@ font-weight: 400;
 line-height: 22px;
 letter-spacing: 0em;
 text-align: left;
-color: black;
-
+color: #6E7172;
 }
-
+@media (max-width: 768px) {
+  .image-with-text__heading {
+    font-size: 24px;
+  }
+}
 @media screen and (max-width: 749px) {
   .collapse-padding .image-with-text__grid .image-with-text__content {
     padding-left: 0;
     padding-right: 0;
   }
 }
+@media (max-width: 425px) {
+  .collapse-padding .image-with-text__grid .image-with-text__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
-@media screen and (min-width: 750px) {
+/* @media screen and (min-width: 750px) {
   .collapse-padding
     .image-with-text__grid:not(.image-with-text__grid--reverse)
     .image-with-text__content:not(.image-with-text__content--desktop-center) {
@@ -407,7 +417,7 @@ color: black;
     .image-with-text__content:not(.image-with-text__content--desktop-center) {
     padding-left: 0;
   }
-}
+} */
 
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {

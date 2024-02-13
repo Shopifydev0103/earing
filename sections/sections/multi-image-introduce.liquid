@@ -9,15 +9,26 @@
   .image-item--1 {
   
       grid-area: 1 / 1 / span 2 / span 2;
-  } 
+  }
+  .multi-image-introduce .container img {
+    max-width: 100%
+  }
+  .multi-image-introduce .container .dis-flex {
+    display: flex;
+  }
+  @media (max-width: 768px) {
+    .multi-image-introduce .container {
+        grid-gap: 15px;
+    }
+  }
 {% endstyle %}
 
 <div class="page-width padding-60-200 multi-image-introduce">
-    <div class="container">
+    <div class="page-width container">
         {%- for block in section.blocks -%}
             {%- if block.type == "image" -%}
                 {%- if block.settings.introduce_image -%}
-                    <div id="{{ block.id }}" class="image-item--{{ forloop.index }}"><img src="{{ block.settings.introduce_image | img_url: "master" }}" alt="image introduce"></div>
+                    <div id="{{ block.id }}" class="image-item--{{ forloop.index }} dis-flex"><img src="{{ block.settings.introduce_image | img_url: "master" }}" alt="image introduce"></div>
                 {%- endif -%}
             {%- endif -%}            
         {%- endfor -%}

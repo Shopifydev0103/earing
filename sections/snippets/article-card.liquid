@@ -23,6 +23,20 @@
       assign ratio = media_aspect_ratio
     endif
   -%}
+  {% style %}
+    .to-blog--page {
+      font-family: Poppins;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 26px;
+      letter-spacing: 0.06em;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: black;
+
+    }
+  {% endstyle %}
   <div class="article-card-wrapper card-wrapper underline-links-hover">
     {% comment %} <article aria-labelledby="Article-{{ article.id }}"> {% endcomment %}
     <div
@@ -136,6 +150,7 @@
                   {{ article.content | strip_html | truncatewords: 30 }}
                 {%- endif -%}
               </p>
+              <a href="{{ blog.url }}" class="to-blog--page">Read More</a>
             {%- endif -%}
             <div class="article-card__footer">
               {%- if article.comments_count > 0 and blog.comments_enabled? -%}
