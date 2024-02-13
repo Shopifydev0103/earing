@@ -48,7 +48,7 @@
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
+        "collection": "gem",
         "products_to_show": 4,
         "columns_desktop": 4,
         "full_width": false,
@@ -90,45 +90,65 @@
         "padding_bottom": 52
       }
     },
+    "featured_blog_tNpxqt": {
+      "type": "featured-blog",
+      "settings": {
+        "heading": "Blog posts",
+        "heading_size": "h1",
+        "blog": "jewelry-cleaning",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "show_view_all": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "img_text_btn_k73yV3": {
+      "type": "img-text-btn",
+      "settings": {
+        "bg_img": "shopify:\/\/shop_images\/banner_1.png",
+        "content_text": "New Collection 2022",
+        "button_label": "Shop Now",
+        "button_url": ""
+      }
+    },
+    "gift_card_YQYYRd": {
+      "type": "gift-card",
+      "settings": {
+        "product": "gift-card"
+      }
+    },
     "multirow_BgiV77": {
       "type": "multirow",
       "blocks": {
-        "row_fYdLfV": {
-          "type": "row",
-          "settings": {
-            "image": "shopify:\/\/shop_images\/gift-card_1.png",
-            "caption": "",
-            "heading": "Gift Card",
-            "text": "<p>We don’t have any ideas what to give ourselves, or are you doubting your choice?A gift certificate is a modern way to bring in friends and relatives, to pick out those who are dear to your heart.<\/p>",
-            "button_label": "Buy Now",
-            "button_link": ""
-          }
-        },
         "row_bipdEV": {
           "type": "row",
           "settings": {
             "image": "shopify:\/\/shop_images\/Mask_group_1.png",
-            "caption": "",
             "heading": "Hurry! Sale 50%",
             "text": "<p>We don’t have any ideas what to give ourselves, or are you doubting your choice?A gift certificate is a modern way to bring in friends and relatives, to pick out those who are dear to your heart.<\/p>",
             "button_label": "Shop Now",
-            "button_link": ""
+            "button_link": "",
+            "gift_product": ""
           }
         },
         "row_qBKj8y": {
           "type": "row",
           "settings": {
             "image": "shopify:\/\/shop_images\/Mask_group.png",
-            "caption": "",
             "heading": "Newsletter",
             "text": "<p>Sign up for exclusive deals and early access to new products.<\/p>",
             "button_label": "Subscribe",
-            "button_link": ""
+            "button_link": "",
+            "gift_product": ""
           }
         }
       },
       "block_order": [
-        "row_fYdLfV",
         "row_bipdEV",
         "row_qBKj8y"
       ],
@@ -140,12 +160,12 @@
         "button_style": "secondary",
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
-        "image_layout": "alternate-left",
+        "image_layout": "alternate-right",
         "section_color_scheme": "",
         "row_color_scheme": "",
         "mobile_content_alignment": "left",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
@@ -153,6 +173,9 @@
     "image_banner",
     "featured_collection",
     "rich_text_p6yaTM",
+    "featured_blog_tNpxqt",
+    "img_text_btn_k73yV3",
+    "gift_card_YQYYRd",
     "multirow_BgiV77"
   ]
 }
