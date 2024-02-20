@@ -1,0 +1,136 @@
+{{ 'multi-image.css' | asset_url | stylesheet_tag }}
+
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+  />
+  
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+{% style %}
+  .custom-image-jewelry-list .container {
+    display: flex;
+    flex-direction: row;
+  }
+  /* .custom-img__size--1 {
+    width: 354px;
+    height: 442px;
+  } */
+  .section-{{ section.id }}-padding {
+  }
+  .custom-img_size {
+    width: 100%;
+  }
+  /* .swiper-slide {
+    width: 354px !important;
+    
+  } */
+  
+  @media (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+{% endstyle %}
+
+<div class="swiper custom-image-jewelry-list page-width">
+  <div class="swiper-wrapper  container section-{{ section.id }}-padding">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'image' -%}
+        {%- if block.settings.introduce_image -%}
+          <div id="{{ block.id }}" class="swiper-slide image-item--{{ forloop.index }} dis-flex">
+            
+            <img class="{% if forloop.index == 1%}custom-img__size--1{% endif %} custom-img_size" src="{{ block.settings.introduce_image | img_url: "master" }}" alt="image introduce">
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        loop: true,
+        centeredSlides: false, 
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          // when window width is >= 320px
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+          // when window width is >= 480px
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          // when window width is >= 640px
+          1280: {
+            slidesPerView: 3.5,
+            spaceBetween: 30
+
+          }
+        }
+      });
+      
+</script>
+
+{% schema %}
+{
+  "name": "custom-image-jewelry-list",
+  "class": "section",
+  "settings": [
+    
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "introduce_image",
+          "label": "Introduce Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-image-jewelry-list",
+      "blocks": [
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

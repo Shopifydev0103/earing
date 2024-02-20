@@ -36,7 +36,16 @@
                     class="header__active-menu-item header__menu-font"
                   {% endif %}
                 >
+                  <a
+                    id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                    href="{{ link.url }}"
+                    class="header__menu-font header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                    {% if link.current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
                   {{- link.title | escape -}}
+                  </a>
                 </span>
                 <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
                   <path class="stroke-white" stroke="black" fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
