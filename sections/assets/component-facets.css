@@ -37,6 +37,8 @@
   grid-column: 2;
   grid-row: 1;
   padding-left: 2.5rem;
+  height: 52px;
+  align-items: center;
 }
 
 @media screen and (min-width: 990px) {
@@ -74,6 +76,8 @@
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
+  border: 1px solid gray;
+  padding: 10px;
 }
 
 .facet-filters__field .select {
@@ -319,7 +323,18 @@
 /* Hover/focus state */
 .facets-layout-list .facets__label:hover .facet-checkbox__text,
 .facets-layout-list input:focus ~ .facet-checkbox__text {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  text-decoration: none;
+}
+.facet-checkbox__text {
+font-family: Poppins;
+font-size: 14px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: left;
+color: black;
+
 }
 
 .facets-layout-grid > * {
@@ -1062,6 +1077,7 @@ input.mobile-facets__checkbox {
   .facets__heading--vertical {
     margin: 0 0 1.5rem 0;
     font-size: 1.5rem;
+    display: none;
   }
 
   .facets__header-vertical {
@@ -1091,7 +1107,9 @@ input.mobile-facets__checkbox {
 
   .facets-vertical-form {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
   }
 
   .product-count-vertical {

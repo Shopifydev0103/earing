@@ -15,6 +15,51 @@
 {{ 'component-show-more.css' | asset_url | stylesheet_tag }}
 {{ 'component-visual-display.css' | asset_url | stylesheet_tag }}
 
+{% style %}
+  facet-remove {
+    display: none;
+  }
+  .custom-faces-button__att {
+    margin-top: 25px;
+    width: 100%;
+    background: black;
+    color: white;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+  .custom-active-facets__att {
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .custom-fecats--border {
+    border-top: 0;
+  }
+  .custom-facets__summary--font {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: black;
+
+  }
+  .slider-track {
+    display: block;
+  }
+
+ 
+{% endstyle %}
 {%- liquid
   assign sort_by = results.sort_by | default: results.default_sort_by
   assign total_active_values = 0
@@ -54,22 +99,7 @@
             {% comment %} Pills are right below the title for filter type vertical {% endcomment %}
             {%- if filter_type == 'vertical' -%}
               <div class="active-facets active-facets-desktop">
-                <div class="active-facets-vertical-filter">
-                  {%- unless results.filters == empty -%}
-                    <h2
-                      class="facets__heading facets__heading--vertical caption-large text-body"
-                      id="verticalTitle"
-                      tabindex="-1"
-                    >
-                      {{ 'products.facets.filter_by_label' | t }}
-                    </h2>
-                  {%- endunless -%}
-                  <facet-remove class="active-facets__button-wrapper">
-                    <a href="{{ results_url }}" class="active-facets__button-remove underlined-link">
-                      <span>{{ 'products.facets.clear_all' | t }}</span>
-                    </a>
-                  </facet-remove>
-                </div>
+                
                 {%- for filter in results.filters -%}
                   {%- for value in filter.active_values -%}
                     <facet-remove>
@@ -130,7 +160,7 @@
                 {% when 'boolean', 'list' %}
                   <details
                     id="Details-{{ filter.param_name | escape }}-{{ section.id }}"
-                    class="{% if filter_type == 'horizontal' %}disclosure-has-popup facets__disclosure{% else %} facets__disclosure-vertical{% endif %} js-filter"
+                    class="{% if filter_type == 'horizontal' %}disclosure-has-popup facets__disclosure{% else %} facets__disclosure-vertical{% endif %} js-filter {% if forloop.index == 1 %} custom-fecats--border {% endif %}"
                     data-index="{{ forloop.index }}"
                     {% if filter_type == 'vertical' and forloop.index == 1 %}
                       open
@@ -141,7 +171,7 @@
                       aria-label="{{ filter.label | escape }} ({{ 'products.facets.filters_selected.one' | t: count: filter.active_values.size }})"
                     >
                       <div>
-                        <span class="facets__summary-label">
+                        <span class="facets__summary-label custom-facets__summary--font">
                           {{- filter.label | escape }}
                           {%- if filter_type == 'vertical' -%}
                             <span class="facets__selected no-js-hidden{% if filter.active_values.size == 0 %} hidden{% endif %}">
@@ -195,7 +225,7 @@
                               assign sorted_values = active_filter_values | concat: inactive_filter_values
                             endif
                           -%}
-                          {%- for value in sorted_values -%}
+                          {%- for value in filter.values -%}
                             {% liquid
                               assign is_disabled = false
                               if value.count == 0 and value.active == false
@@ -257,8 +287,11 @@
                                   </svg>
                                 {% endif %}
 
-                                <span class="facet-checkbox__text" aria-hidden="true">
+                                {% comment %} <span class="facet-checkbox__text" aria-hidden="true">
                                   {{- value.label | escape }} ({{ value.count }})</span
+                                > {% endcomment %}
+                                <span class="facet-checkbox__text" aria-hidden="true"> 
+                                  {{- value.label | escape }} </span
                                 >
                                 <span class="visually-hidden">
                                   {{- value.label | escape }} (
@@ -374,7 +407,7 @@
                   >
                     <summary class="facets__summary caption-large focus-offset">
                       <div>
-                        <span>{{ filter.label | escape }}</span>
+                        <span class="custom-facets__summary--font">{{ filter.label | escape }}</span>
                         {% render 'icon-caret' %}
                       </div>
                     </summary>
@@ -383,10 +416,7 @@
                       class="{% if filter_type == 'horizontal' %}facets__display{% else %}facets__display-vertical{% endif %}"
                     >
                       <div class="{% if filter_type == 'horizontal' %}facets__header{% else %}facets__header-vertical{% endif %}">
-                        {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
-                        <span class="facets__selected">
-                          {{- 'products.facets.max_price' | t: price: max_price_amount -}}
-                        </span>
+                        
                         {%- if filter_type != 'vertical' -%}
                           <facet-remove>
                             <a href="{{ filter.url_to_remove }}" class="facets__reset link underlined-link">
@@ -394,8 +424,19 @@
                             </a>
                           </facet-remove>
                         {%- endif -%}
+
+
+                        {%- assign max_price_amoun = filter.range_max | money | strip_html | escape -%}
+                        {%- assign min_price_amoun = filter.range_min | money | strip_html | escape -%}
+                        {%- assign min_price_amount = filter.min_value.value | money | strip_html | escape -%}
+                        {%- assign max_price_amount = filter.max_value.value | money | strip_html | escape -%}
+                        {% comment %} <span class="facets__selected">
+                          Price: 
+                          {{- 'products.facets.min_price' | t: price: min_price_amount -}} - 
+                          {{- 'products.facets.max_price' | t: price: max_price_amount -}}
+                        </span> {% endcomment %}
                       </div>
-                      <price-range class="facets__price">
+                      {% comment %} <price-range class="facets__price">
                         <span class="field-currency">{{ cart.currency.symbol }}</span>
                         <div class="field">
                           <input
@@ -409,7 +450,7 @@
                                 value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
                               {%- endif %}
                             {%- endif -%}
-                            type="number"
+                            type="numbers"
                             placeholder="0"
                             min="0"
                             {%- if uses_comma_decimals -%}
@@ -451,16 +492,87 @@
                             {{- 'products.facets.to' | t -}}
                           </label>
                         </div>
-                      </price-range>
+                      </price-range> {% endcomment %}
+
+
+
+                      <div class="wrapper">
+                       
+                        <div class="container">
+                          <div class="slider-track"></div>
+                          <input type="range"  id="slider-1" oninput="slideOne()"  
+                            name="{{ filter.min_value.param_name }}"
+                            {%- if filter.min_value.value -%}
+                              {%- if uses_comma_decimals -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                              {%- else -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                              {%- endif %}
+                            {%- endif -%}
+                            placeholder="0"
+                            min="0"
+                            {%- if uses_comma_decimals -%}
+                              max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                            {%- else -%}
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                            {% endif %}>
+                          <input type="range" id="slider-2" oninput="slideTwo()" 
+                            name="{{ filter.max_value.param_name }}"
+                            {%- if filter.max_value.value -%}
+                              {%- if uses_comma_decimals -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                              {%- else -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                              {%- endif %}
+                            {%- endif -%}
+                            min="0"
+                            {%- if uses_comma_decimals -%}
+                              placeholder="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                              max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                            {%- else -%}
+                              placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                            {% endif %}>
+                        </div>
+                        <div class="values">
+                          <span>Price:</span>$
+                          <span id="range1">
+                            0
+                          </span>
+                          <span> &dash; </span>$
+                          <span id="range2">
+                            100
+                          </span>
+                        </div>
+                      </div>
                     </div>
+
+
+
                   </details>
               {% endcase %}
             {%- endfor -%}
-            <noscript>
-              <button type="submit" class="facets__button-no-js button button--secondary">
+            <div>
+              <button type="submit" class="custom-faces-button__att facets__button-no-js button button--secondary">
                 {{ 'products.facets.filter_button' | t }}
               </button>
-            </noscript>
+            </div>
+            <div class="active-facets-vertical-filter">
+              {%- unless results.filters == empty -%}
+                <h2
+                  class="facets__heading facets__heading--vertical caption-large text-body"
+                  id="verticalTitle"
+                  tabindex="-1"
+                >
+                  {{ 'products.facets.filter_by_label' | t }}
+                </h2>
+              {%- endunless -%}
+              <facet-remove class="active-facets__button-wrapper">
+                <a href="{{ results_url }}" class="custom-active-facets__att active-facets__button-remove underlined-link">
+                  <span>{{ 'products.facets.clear_all' | t }}</span>
+                </a>
+              </facet-remove>
+            </div>
           </div>
           {% comment %} Pills after filtes on filter type horizontal {% endcomment %}
           {%- if filter_type == 'horizontal' -%}
@@ -543,6 +655,7 @@
                   </select>
                   {% render 'icon-caret' %}
                 </div>
+                
               </div>
 
               <noscript>
@@ -602,6 +715,7 @@
                 </select>
                 {% render 'icon-caret' %}
               </div>
+              
             </div>
 
             <noscript>
@@ -1192,3 +1306,39 @@
     </facet-filters-form>
   {%- endif -%}
 </div>
+
+<script>
+  window.onload = function () {
+    slideOne();
+    slideTwo();
+  };
+  
+  let sliderOne = document.getElementById("slider-1");
+  let sliderTwo = document.getElementById("slider-2");
+  let displayValOne = document.getElementById("range1");
+  let displayValTwo = document.getElementById("range2");
+  let minGap = 0;
+  let sliderTrack = document.querySelector(".slider-track");
+  let sliderMaxValue = document.getElementById("slider-1").max;
+  
+  function slideOne() {
+    if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+      sliderOne.value = parseInt(sliderTwo.value) - minGap;
+    }
+    displayValOne.textContent = sliderOne.value;
+    fillColor();
+  }
+  function slideTwo() {
+    if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
+      sliderTwo.value = parseInt(sliderOne.value) + minGap;
+    }
+    displayValTwo.textContent = sliderTwo.value;
+    fillColor();
+  }
+  function fillColor() {
+    percent1 = (sliderOne.value / sliderMaxValue) * 100;
+    percent2 = (sliderTwo.value / sliderMaxValue) * 100;
+    sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , black ${percent1}% , black ${percent2}%, #dadae5 ${percent2}%)`;
+  }
+  
+</script>

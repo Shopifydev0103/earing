@@ -4,7 +4,19 @@
   Usage:
   {% render 'header-mega-menu' %}
 {% endcomment %}
+{% style %}
+  .header__inline-menu {
+    width: 60%
+  }
+  .list-menu--inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+  }
 
+{% endstyle %}
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
@@ -23,7 +35,7 @@
                 >
                   {{- link.title | escape -}}
                 </span>
-                {% render 'icon-caret' %}
+                {% comment %} {% render 'icon-caret' %} {% endcomment %}
               </summary>
               <div
                 id="MegaMenu-Content-{{ forloop.index }}"

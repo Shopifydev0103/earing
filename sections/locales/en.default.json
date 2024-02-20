@@ -182,7 +182,7 @@
       "filter_and_operator_subtitle": "Match all",
       "apply": "Apply",
       "clear": "Clear",
-      "clear_all": "Remove all",
+      "clear_all": "clear filter",
       "from": "From",
       "filter_and_sort": "Filter and sort",
       "filter_by_label": "Filter:",
@@ -194,7 +194,8 @@
       "filter_selected_accessibility": "{{ type }} ({{ count }} filters selected)",
       "show_more": "Show more",
       "show_less": "Show less",
-      "max_price": "The highest price is {{ price }}",
+      "max_price": "{{ price }}",
+      "min_price": "{{ price }}",
       "product_count": {
         "one": "{{ product_count }} of {{ count }} product",
         "other": "{{ product_count }} of {{ count }} products"

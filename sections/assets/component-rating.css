@@ -58,3 +58,21 @@
     display: block;
   }
 }
+.card-wrapper .custom-flex-row {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  
+}
+ .custom-list--width_200 {
+  max-width: 200px;
+}
+.custom-list-card__information {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.custom-list-text-left {
+  text-align: left;
+}

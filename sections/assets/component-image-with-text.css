@@ -5,6 +5,11 @@
 .image-with-text .grid__item {
   position: relative;
 }
+@media  (max-width: 768px) {
+  .image-with-text .grid__item {
+    height: 425px;
+  }
+}
 
 @media screen and (min-width: 750px) {
   .image-with-text__grid--reverse {
@@ -35,7 +40,7 @@
   }
 
   .image-with-text__media--medium {
-    height: 46rem;
+    height: 49.3rem;
   }
 
   .image-with-text__media--large {
@@ -87,7 +92,7 @@
   height: 100%;
   justify-content: center;
   align-self: center;
-  padding: 4rem calc(4rem / var(--font-body-scale)) 5rem;
+  /* padding: 4rem calc(4rem / var(--font-body-scale)) 5rem; */
   position: relative;
   z-index: 1;
 }
@@ -130,6 +135,16 @@
   overflow: hidden;
   box-shadow: var(--text-boxes-shadow-horizontal-offset) var(--text-boxes-shadow-vertical-offset)
     var(--text-boxes-shadow-blur-radius) rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
+}
+.multi-content__position {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 76%;
+}
+.multi-content__position--relative {
+  position: relative;
 }
 
 .image-with-text:not(.image-with-text--overlap) .image-with-text__media-item > *,
@@ -330,11 +345,7 @@
   word-break: break-word;
 }
 
-@media screen and (min-width: 990px) {
-  .image-with-text__content {
-    padding: 80px ;
-  }
-}
+
 
 .image-with-text__content > * + * {
   margin-top: 2rem;

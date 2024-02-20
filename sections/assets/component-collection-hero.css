@@ -36,7 +36,14 @@
 }
 
 .collection-hero__title {
-  margin: 2.5rem 0;
+  /* margin: 2.5rem 0; */
+  font-family: Poppins;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 70px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  color: black;
 }
 
 .collection-hero__title + .collection-hero__description {

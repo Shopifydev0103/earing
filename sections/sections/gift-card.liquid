@@ -4,12 +4,18 @@
 {% style %}
     .feature-product__image {
     background: url("{{ section.settings.background_img | img_url: "master" }}");
-    background-size: cover;
+    background-size: contain;
+}
+@media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
 }
 {% endstyle %}
 
 <div class="feature-product">
-    <div class="feature-product-wrapper page-width padding-60-200">
+    <div class="feature-product-wrapper page-width section-{{ section.id }}-padding">
         <div class="feature-product__image">
             <img src="{{ section.settings.product.featured_image | img_url: '750x750'}}" alt="{{ section.settings.product.title | escape }}" />
         </div>
@@ -52,6 +58,26 @@
                 "type": "image_picker",
                 "id": "background_img",
                 "label": "Background Image"
+            },
+            {
+                "type": "range",
+                "id": "padding_top",
+                "min": 0,
+                "max": 100,
+                "step": 10,
+                "unit": "px",
+                "label": "Padding top",
+                "default": 40
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "min": 0,
+                "max": 100,
+                "step": 10,
+                "unit": "px",
+                "label": "Padding bottom",
+                "default": 40
             }
            
           ],

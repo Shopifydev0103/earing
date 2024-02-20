@@ -112,3 +112,21 @@ color: black;
 .collection__view-all a:not(.link) {
   margin-top: 1rem;
 }
+
+.custom-dis-none {
+  display: none !important;
+}
+.custom-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.custom-list--width {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.custom-pointer__click:hover .custom-pointer path,
+.custom-pointer__click:hover .custom-pointer rect {
+  cursor: pointer;
+  stroke: black;
+  background-color: red;
+}

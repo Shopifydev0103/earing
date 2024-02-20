@@ -43,12 +43,12 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
+        "title": "Popular Items",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "gem",
+        "collection": "rings",
         "products_to_show": 4,
         "columns_desktop": 4,
         "full_width": false,
@@ -64,8 +64,8 @@
         "enable_quick_add": false,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 32
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "rich_text_p6yaTM": {
@@ -86,8 +86,8 @@
         "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "multi_image_introduce_dN8Vit": {
@@ -132,12 +132,14 @@
         "image_MLqGke"
       ],
       "settings": {
+        "padding_top": 0,
+        "padding_bottom": 60
       }
     },
     "featured_blog_tNpxqt": {
       "type": "featured-blog",
       "settings": {
-        "heading": "Blog posts",
+        "heading": "Blog",
         "heading_size": "h1",
         "blog": "jewelry-cleaning",
         "post_limit": 3,
@@ -147,16 +149,16 @@
         "show_date": true,
         "show_author": false,
         "show_view_all": true,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 60,
+        "padding_bottom": 0
       }
     },
-    "img_text_btn_k73yV3": {
+    "img_text_btn_9aAtFR": {
       "type": "img-text-btn",
       "settings": {
         "bg_img": "shopify:\/\/shop_images\/banner_1.png",
         "content_text": "New Collection 2022",
-        "button_label": "Shop Now",
+        "button_label": "Shop now",
         "button_url": ""
       }
     },
@@ -164,7 +166,9 @@
       "type": "gift-card",
       "settings": {
         "product": "gift-card",
-        "background_img": "shopify:\/\/shop_images\/f1613bc8384494038ab8307b40a70053.jpg"
+        "background_img": "shopify:\/\/shop_images\/f1613bc8384494038ab8307b40a70053.jpg",
+        "padding_top": 40,
+        "padding_bottom": 0
       }
     },
     "multirow_BgiV77": {
@@ -210,7 +214,7 @@
         "row_color_scheme": "",
         "mobile_content_alignment": "left",
         "padding_top": 0,
-        "padding_bottom": 0
+        "padding_bottom": 60
       }
     }
   },
@@ -220,7 +224,7 @@
     "rich_text_p6yaTM",
     "multi_image_introduce_dN8Vit",
     "featured_blog_tNpxqt",
-    "img_text_btn_k73yV3",
+    "img_text_btn_9aAtFR",
     "gift_card_YQYYRd",
     "multirow_BgiV77"
   ]

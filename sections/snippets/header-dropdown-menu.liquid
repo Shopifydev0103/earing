@@ -4,6 +4,21 @@
   Usage:
   {% render 'header-dropdown-menu' %}
 {% endcomment %}
+{% style %}
+  .custom-header__menu--position {
+    left: 0;
+    margin-top: 30px
+    
+  }
+  .custom-header-menu-detail__position {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+  }
+  .details-headerMenu:hover {
+    background: #F9F9F9;
+  }
+{% endstyle %}
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
@@ -11,7 +26,7 @@
       <li>
         {%- if link.links != blank -%}
           <header-menu>
-            <details id="Details-HeaderMenu-{{ forloop.index }}">
+            <details id="Details-HeaderMenu-{{ forloop.index }}" class="details-headerMenu">
               <summary
                 id="HeaderMenu-{{ link.handle }}"
                 class="header__menu-item list-menu__item link focus-inset"
@@ -23,16 +38,19 @@
                 >
                   {{- link.title | escape -}}
                 </span>
-                {% render 'icon-caret' %}
+                <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6">
+                  <path class="stroke-white" stroke="black" fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                </svg>
               </summary>
-              <ul
+              <div
                 id="HeaderMenu-MenuList-{{ forloop.index }}"
-                class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
+                class="custom-header__menu--position header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup"
                 role="list"
                 tabindex="-1"
               >
+                <div class="custom-header-menu-detail__position">
                 {%- for childlink in link.links -%}
-                  <li>
+                  <div>
                     {%- if childlink.links == blank -%}
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
@@ -45,20 +63,28 @@
                         {{ childlink.title | escape }}
                       </a>
                     {%- else -%}
-                      <details id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
-                        <summary
+                    <a
+                      id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                      href="{{ childlink.url }}"
+                      class="header__menu-font header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                      {% if childlink.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      <div id="Details-HeaderSubMenu-{{ link.handle }}-{{ childlink.handle }}">
+                        <div
                           id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                           class="header__menu-font header__menu-item link link--text list-menu__item focus-inset caption-large"
                         >
                           <span>{{ childlink.title | escape }}</span>
-                          {% render 'icon-caret' %}
-                        </summary>
-                        <ul
+                          {% comment %} {% render 'icon-caret' %} {% endcomment %}
+                        </div>
+                        <div
                           id="HeaderMenu-SubMenuList-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                           class="header__submenu list-menu motion-reduce"
                         >
                           {%- for grandchildlink in childlink.links -%}
-                            <li>
+                            <div>
                               <a
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                 href="{{ grandchildlink.url }}"
@@ -69,14 +95,16 @@
                               >
                                 {{ grandchildlink.title | escape }}
                               </a>
-                            </li>
+                            </div>
                           {%- endfor -%}
-                        </ul>
-                      </details>
+                        </div>
+                      </div>
+                      </a>
                     {%- endif -%}
-                  </li>
+                  </div>
                 {%- endfor -%}
-              </ul>
+              </div>
+              </div>
             </details>
           </header-menu>
         {%- else -%}

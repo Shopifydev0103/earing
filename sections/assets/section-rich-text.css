@@ -38,7 +38,6 @@ color: black;
 }
 @media (max-width: 425px) {
   .rich-text__text p {
-    font-size: 15px;
     line-height: 35px;
   }
 }
