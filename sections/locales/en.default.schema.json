@@ -2108,6 +2108,21 @@
         }
       }
     },
+    "collection-list-banner": {
+      "name": "Collection list banner",
+      "settings": {
+        "paragraph": {
+          "content": "Add a description or image by editing your collection list. [Learn more](https:\/\/help.shopify.com\/manual\/products\/collections\/collection-layout)"
+        },
+        "show_collection_list_description": {
+          "label": "Show collection list description"
+        },
+        "show_collection_list_image": {
+          "label": "Show collection list image",
+          "info": "For best results, use an image with a 16:9 aspect ratio. [Learn more](https:\/\/help.shopify.com\/manual\/shopify-admin\/productivity-tools\/image-editor#understanding-image-aspect-ratio)"
+        }
+      }
+    },
     "main-collection-product-grid": {
       "name": "Product grid",
       "settings": {

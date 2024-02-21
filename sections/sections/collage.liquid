@@ -261,7 +261,10 @@
     </div>
     </div>
   </div>
+  
 </div>
+
+
 
 {% schema %}
 {
@@ -272,6 +275,15 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2,
+      "label": "Products per page"
+    },
     {
       "type": "inline_richtext",
       "id": "heading",

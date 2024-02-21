@@ -15,7 +15,7 @@
       
       <h1 class="collection-hero__title">
         <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
+        Collections
       </h1>
 
       {%- if section.settings.show_collection_description -%}
@@ -48,31 +48,37 @@
 
 {% schema %}
 {
-  "name": "t:sections.main-collection-banner.name",
+  "name": "t:sections.collection-list-banner.name",
   "class": "section",
   "settings": [
     {
       "type": "paragraph",
-      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+      "content": "t:sections.collection-list-banner.settings.paragraph.content"
     },
     {
       "type": "checkbox",
       "id": "show_collection_description",
       "default": true,
-      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+      "label": "t:sections.collection-list-banner.settings.show_collection_description.label"
     },
     {
       "type": "checkbox",
       "id": "show_collection_image",
       "default": false,
-      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
-      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
+      "label": "t:sections.collection-list-banner.settings.show_collection_list_description.label",
+      "info": "t:sections.collection-list-banner.settings.show_collection_list_image.info"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "collection list banner"
+      
     }
   ]
 }
