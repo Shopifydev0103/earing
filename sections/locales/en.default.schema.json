@@ -746,10 +746,10 @@
           "label": "Number of columns on desktop"
         },
         "show_view_all": {
-          "label": "Enable \"View all\" if collection has more products than shown"
+          "label": "Enable \"Show more\" if collection has more products than shown"
         },
         "view_all_style": {
-          "label": "\"View all\" style",
+          "label": "\"Show more\" style",
           "options__1": {
             "label": "Link"
           },
@@ -758,6 +758,9 @@
           },
           "options__3": {
             "label": "Solid button"
+          },
+          "options__4": {
+            "label": "Text Uppercase"
           }
         },
         "enable_desktop_slider": {

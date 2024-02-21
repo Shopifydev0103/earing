@@ -48,13 +48,26 @@
   endif
 -%}
 
-<div class="page-width color-{{ section.settings.color_scheme }} isolate gradient">
+<div class="color-{{ section.settings.color_scheme }} isolate gradient">
   <div class=" collection section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}">
-    <div class=" collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
+    <div class=" {% if section.settings.show_more_position == "top-right" %}display-flex-row justify-content--sp {% endif %} collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
-        <h2 class="collection-title-custom title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <h2 class="title inline-richtext {{ section.settings.heading_size }} {{ section.settings.heading_position}}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
         </h2>
+        {%- if section.settings.show_view_all and more_in_collection -%}
+          {%- if section.settings.show_more_position == "top-left" or section.settings.show_more_position == "top-center" or section.settings.show_more_position == "top-right" -%}
+            <div class="{{ section.settings.show_more_position }} collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+              <a
+               href="{{ section.settings.collection.url }}"
+               class="{% if section.settings.view_all_style == "textuppercase" %} uppercase-decoration__none {% endif %} {{ section.settings.show_more_font_size }}  {% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% elsif section.settings.view_all_style != "textuppercase"%}button button--secondary{% endif %}"
+               aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title }}"
+             >
+               {{ 'sections.featured_collection.view_all' | t }}
+             </a> 
+           </div>
+          {%- endif -%}
+        {%- endif -%}
       {%- endif -%}
       {%- if section.settings.description != blank
         or section.settings.show_description
@@ -154,16 +167,17 @@
     </slider-component>
 
     {%- if section.settings.show_view_all and more_in_collection -%}
-      <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {% comment %} <a
-          href="{{ section.settings.collection.url }}"
-          class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
-          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title }}"
-        >
-          {{ 'sections.featured_collection.view_all' | t }}
-        </a> {% endcomment %}
-        <a href="{{ section.settings.colelction.url }}" class="custom-showmore">Show More</a>
-      </div>
+      {%- if section.settings.show_more_position == "bottom-left" or section.settings.show_more_position == "bottom-center" or section.settings.show_more_position == "bottom-right" -%}
+        <div class="{{ section.settings.show_more_position }} collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <a
+           href="{{ section.settings.collection.url }}"
+           class="{% if section.settings.view_all_style == "textuppercase" %} uppercase-decoration__none {% endif %} {{ section.settings.show_more_font_size }}  {% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% elsif section.settings.view_all_style != "textuppercase"%}button button--secondary{% endif %}"
+           aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title }}"
+         >
+           {{ 'sections.featured_collection.view_all' | t }}
+         </a> 
+       </div>
+      {%- endif -%}
     {%- endif -%}
     {% if section.settings.image_shape == 'arch' %}
       {% render 'mask-arch' %}
@@ -201,10 +215,38 @@
         {
           "value": "h0",
           "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "featured-collection__font--60",
+          "label": "font 60"
+        },
+        {
+          "value": "featured-collection__font--24",
+          "label": "font 24"
         }
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "left"
+        },
+        {
+          "value": "center",
+          "label": "center"
+        },
+        {
+          "value": "right",
+          "label": "right"
+        }
+      ],
+      "default": "left",
+      "label": "collection heading position"
     },
     {
       "type": "richtext",
@@ -288,9 +330,65 @@
         {
           "value": "solid",
           "label": "t:sections.featured-collection.settings.view_all_style.options__3.label"
+        },
+        {
+          "value": "textuppercase",
+          "label": "t:sections.featured-collection.settings.view_all_style.options__4.label"
         }
       ],
       "default": "solid"
+    },
+    {
+      "type": "select",
+      "id": "show_more_font_size",
+      "options": [
+        {
+          "value": "font18",
+          "label": "18px"
+        },
+        {
+          "value": "font25",
+          "label": "25px"
+        },
+        {
+          "value": "font30",
+          "label": "30px"
+        }
+      ],
+      "default": "font18",
+      "label": "Show more font"
+    },
+    {
+      "type": "select",
+      "id": "show_more_position",
+      "options": [
+        {
+        "value": "top-left",
+        "label": "top-left"
+        },
+        {
+          "value": "top-center",
+          "label": "top-center"
+        },
+        {
+          "value": "top-right",
+          "label": "top-right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "bottom-left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "bottom-center"
+        },
+        {
+          "value": "bottom-right",
+          "label": "bottom-right"
+          }
+      ],
+      "default": "bottom-center",
+      "label": "show more position"
     },
     {
       "type": "checkbox",

@@ -72,6 +72,22 @@
 }
 
 /* base */
+.featured-collection__font--60 {
+    font-family: Poppins;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 64px;
+    letter-spacing: .02em;
+    color: #000;
+}
+.featured-collection__font--24 {
+font-family: Poppins;
+font-size: 24px;
+font-weight: 600;
+line-height: 26px;
+letter-spacing: 0.02em;
+color: black;
+}
 
 .no-js:not(html) {
   display: none !important;
@@ -140,6 +156,11 @@ html.no-js .no-js-hidden {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.uppercase-decoration__none {
+  text-decoration: none;
+  text-transform: uppercase;
 }
 @media screen and (max-width: 425px) {
   .img-text-button .container .text-btn-wrapper {
@@ -590,15 +611,21 @@ table:not([class]) th {
   }
 }
 
-.left {
+.left,
+.bottom-left,
+.top-left {
   text-align: left;
 }
 
-.center {
+.center,
+.bottom-center,
+.top-center {
   text-align: center;
 }
 
-.right {
+.right,
+.bottom-right,
+.top-right {
   text-align: right;
 }
 
@@ -808,6 +835,13 @@ summary .icon-caret {
 
 summary::-webkit-details-marker {
   display: none;
+}
+.display-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.justify-content--sp {
+  justify-content: space-between;
 }
 
 .disclosure-has-popup {
@@ -3303,6 +3337,30 @@ details[open]>.header__menu-item .icon-caret {
 
 .font-body-bold {
   font-weight: var(--font-body-weight-bold);
+}
+.font18 {
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0.06em;
+  color: black;
+}
+.font25 {
+  font-family: Poppins;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.06em;
+  color: #000;
+}
+.font30 {
+  font-family: Poppins;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 33px;
+  letter-spacing: 0.06em;
+  color: #000;
 }
 
 /* outline and border styling for Windows High Contrast Mode */
