@@ -34,10 +34,10 @@
     checked
   {% endif %}
 >
-<label
+<label 
   for="{{ id }}"
   title="{{ value }}"
-  class="swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
+  class=" swatch-input__label{% if shape == 'square' %} swatch-input__label--square{% endif %}"
 >
   {% render 'swatch', swatch: value.swatch, shape: shape %}
   <span class="visually-hidden">{{ value }}</span>

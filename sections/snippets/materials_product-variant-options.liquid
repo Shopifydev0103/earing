@@ -5,7 +5,7 @@
   - product: {Object} product object.
   - option: {Object} current product_option object.
   - block: {Object} block object.
-  - picker_type: {String} type of picker to dispay
+  - materials_picker_type: {String} type of picker to dispay
 
 
   Usage:
@@ -13,10 +13,9 @@
     product: product,
     option: option,
     block: block
-    picker_type: picker_type
+    materials_picker_type: materials_picker_type
   %}
 {% endcomment %}
-
 
 {%- liquid
   assign variants_available_arr = product.variants | map: 'available'
@@ -68,7 +67,7 @@
     </span>
   {%- endcapture %}
 
-  {%- if picker_type == 'swatch' -%}
+  {%- if materials_picker_type == 'swatch' -%}
     {% assign checked = false %}
     {% if option.selected_value == value %}
       {% assign checked = true %}
@@ -84,7 +83,7 @@
       shape: block.settings.swatch_shape,
       help_text: label_unavailable
     %}
-  {%- elsif picker_type == 'button' -%}
+  {%- elsif materials_picker_type == 'button' -%}
     <input
       type="radio"
       id="{{ input_id }}"
@@ -98,17 +97,17 @@
         class="disabled"
       {% endif %}
     >
-    <label  for="{{ input_id }}">
+    <label for="{{ input_id }}" >
       {{ value -}}
       {{ label_unavailable }}
     </label>
-  {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
+  {%- elsif materials_picker_type == 'dropdown' or materials_picker_type == 'swatch_dropdown' -%}
     <option
       value="{{ value | escape }}"
       {% if option.selected_value == value %}
         selected="selected"
       {% endif %}
-      {% if swatch_value and picker_type == 'swatch_dropdown' %}
+      {% if swatch_value and materials_picker_type == 'swatch_dropdown' %}
         data-option-swatch-value="{{ swatch_value }}"
       {% endif %}
     >

@@ -840,9 +840,24 @@ summary::-webkit-details-marker {
   display: flex;
   flex-direction: row;
 }
+.display-flex-col {
+  display: flex;
+  flex-direction: column;
+}
 .justify-content--sp {
   justify-content: space-between;
 }
+.align-center {
+  align-items: center;
+}
+.width-70 {
+  width: 70%;
+}
+.width-50 {
+  width: 50%;
+}
+
+
 
 .disclosure-has-popup {
   position: relative;
@@ -2117,7 +2132,8 @@ input[type='checkbox'] {
 .quantity {
   color: rgba(var(--color-foreground));
   position: relative;
-  width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
+  /* width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2); */
+  width: 100%;
   display: flex;
   border-radius: var(--inputs-radius);
   min-height: calc((var(--inputs-border-width) * 2) + 4.5rem);
@@ -3338,6 +3354,16 @@ details[open]>.header__menu-item .icon-caret {
 .font-body-bold {
   font-weight: var(--font-body-weight-bold);
 }
+.font16 {
+font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0.02em;
+text-align: left;
+color: #000;
+
+}
 .font18 {
   font-family: Poppins;
   font-size: 18px;
@@ -3361,6 +3387,23 @@ details[open]>.header__menu-item .icon-caret {
   line-height: 33px;
   letter-spacing: 0.06em;
   color: #000;
+}
+.font36 {
+  font-family: Poppins;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 33px;
+  letter-spacing: 0.06em;
+  color: #000;
+}
+.font48 {
+font-family: Poppins;
+font-size: 48px;
+font-weight: 600;
+line-height: 64px;
+letter-spacing: 0.02em;
+color: #000;
+
 }
 
 /* outline and border styling for Windows High Contrast Mode */
