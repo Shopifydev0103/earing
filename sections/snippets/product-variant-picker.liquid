@@ -66,9 +66,9 @@ color: #6E7172;
           </div>
         </div>
       {%- elsif materials_picker_type == 'button' -%}
-        <div class="display-flex-row width-70 align-center product-picker__font js product-form__input product-form__input--pill">
-          <div class="width-50 form__label">Choose {{ option.name }}:</div>
-          <div class="display-flex-row justify-content--sp width-50 materials-picker">
+        <div class="display-flex-row width-70 justify-content--sp align-center product-picker__font js product-form__input product-form__input--pill">
+          <div class="form__label">Choose {{ option.name }}:</div>
+          <div class="display-flex-row justify-content--sp width-203p materials-picker">
           {% render 'materials_product-variant-options',
             product: product,
             option: option,
@@ -154,8 +154,8 @@ color: #6E7172;
           %}
         </div>
       {%- else -%}
-        <div class="display-flex-row width-70 align-center product-form__input product-form__input--dropdown">
-          <label class="width-50 form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+        <div class="display-flex-row width-70 justify-content--sp align-center product-form__input product-form__input--dropdown">
+          <label class=" form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             Choose {{ option.name }}:
           </label>
           <div class=" select">

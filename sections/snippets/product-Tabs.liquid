@@ -1,0 +1,172 @@
+<style>
+    body {
+        background-image: linear-gradient(19deg, #ff8a00 0%, #7b4302 100%);
+        background-repeat: no-repeat;
+        font: 400 16px/1.5em "Open Sans", sans-serif;
+      }
+      
+      .page-content {
+        max-width: 700px;
+        margin: 32px auto;
+        padding: 32px;
+        background: #fff;
+      }
+      
+      [data-tab-content] {
+        display: none;
+      }
+      
+      .active[data-tab-content] {
+        display: block;
+      }
+      
+      .tabs {
+        display: flex;
+        justify-content: space-around;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .tab {
+        flex: 1;
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 10px;
+        color: #cdcdcd;
+        border-bottom: 1px solid #cdcdcd;
+      }
+      
+      .tab.active {
+        color: #1babf9;
+        border-bottom: 2px solid #1babf9;
+      }
+      
+      .tab-li {
+        flex: 1;
+        margin-bottom: 0;
+      }
+      
+      .tab-li a {
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 10px 0;
+        color: #cdcdcd;
+        border-bottom: 2px solid #cdcdcd;
+        margin-bottom: 0.4rem;
+        width: 100%;
+        display: block;
+      }
+      
+      .tab-li a.active {
+        color: #000;
+        border-bottom: 2px solid #000;
+      }
+      
+      .tab-li a {
+        text-decoration: none;
+        white-space: nowrap;
+        padding: 10px;
+        -webkit-user-drag: none;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        display: block;
+      }
+      
+
+</style>
+
+<div class="page-content">
+    <nav>
+      <ul class="tabs">
+        <li class="tab-li">
+          <a href="#tab1" class="tab-li__link">Description</a>
+        </li>
+        <li class="tab-li">
+          <a href="#tab2" class="tab-li__link">Shipping and returns</a>
+        </li>
+        <li class="tab-li">
+          <a href="#tab3" class="tab-li__link">Shipping and returns</a>
+        </li>
+      </ul>
+    </nav>
+  
+    <section id="tab1" data-tab-content>
+      <article>
+       {{ product.metafields.custom.product_description.value }}
+        <script>
+            console.log({{ product.metafields.custom.product_description.value | json }});
+        
+        </script>
+            
+      </article>
+    </section>
+  
+    <section id="tab2" data-tab-content class="">
+      <article>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue mauris nibh, ac porta lorem volutpat sed. Maecenas accumsan lectus neque, a vehicula risus ullamcorper at. Aenean maximus consectetur leo, nec vulputate ex imperdiet quis. Sed quis mi ut ligula sollicitudin volutpat id ut est. Etiam a pellentesque eros. Duis sit amet posuere erat. Ut maximus eleifend hendrerit. Suspendisse at suscipit diam.
+      </article>
+    </section>
+  
+    <section id="tab3" data-tab-content class="">
+        <article>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue mauris nibh, ac porta lorem volutpat sed. Maecenas accumsan lectus neque, a vehicula risus ullamcorper at. Aenean maximus consectetur leo, nec vulputate ex imperdiet quis. Sed quis mi ut ligula sollicitudin volutpat id ut est. Etiam a pellentesque eros. Duis sit amet posuere erat. Ut maximus eleifend hendrerit. Suspendisse at suscipit diam.
+          </article>
+    </section>
+  </div>
+
+<script>
+    
+    var nestedTabSelect = (tabsElement, currentElement) => {
+        const tabs = tabsElement ?? 'ul.tabs';
+        const currentClass = currentElement ?? 'active';
+        
+        document.querySelectorAll(tabs).forEach(function (tabContainer) {
+          let activeLink, activeContent;
+          const links = Array.from(tabContainer.querySelectorAll("a"));
+      
+          activeLink =
+            links.find(function (link) {
+              return link.getAttribute("href") === location.hash;
+            }) || links[0];
+          activeLink.classList.add(currentClass);
+      
+          activeContent = document.querySelector(activeLink.getAttribute("href"));
+          activeContent.classList.add(currentClass);
+      
+          links.forEach(function (link) {
+            if (link !== activeLink) {
+              const content = document.querySelector(link.getAttribute("href"));
+              content.classList.remove(currentClass);
+            }
+          });
+      
+          tabContainer.addEventListener("click", function (e) {
+            if (e.target.tagName === "A") {
+              // Make the old tab inactive.
+              activeLink.classList.remove(currentClass);
+              activeContent.classList.remove(currentClass);
+      
+              // Update the variables with the new link and content.
+              activeLink = e.target;
+              activeContent = document.querySelector(activeLink.getAttribute("href"));
+      
+              // Make the tab active.
+              activeLink.classList.add(currentClass);
+              activeContent.classList.add(currentClass);
+      
+              e.preventDefault();
+            }
+          });
+        });
+      };
+      
+      nestedTabSelect('ul.tabs', 'active');
+      
+</script>
