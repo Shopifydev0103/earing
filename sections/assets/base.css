@@ -117,6 +117,9 @@ html.no-js .no-js-hidden {
 .pt-40 {
   padding-top: 40px !important;
 }
+.justify-content-flex--end {
+  justify-content: flex-end !important;
+}
 
 .page-width {
   max-width: var(--page-width);
@@ -742,13 +745,17 @@ hr {
   color: currentColor;
   display: block;
   font-family: Poppins;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 26px;
-  letter-spacing: 0.02em;
-  text-align: left;
-  color: #000;
+font-size: 16px;
+font-weight: 300;
+line-height: 24px;
+letter-spacing: 0.02em;
+text-align: center;
+color: #3a3836;
+
   
+}
+.padding-0 {
+  padding: 0 !important;
 }
 
 .placeholder {

@@ -144,14 +144,14 @@
       "settings": {
         "heading": "Blog",
         "heading_size": "h1",
-        "blog": "jewelry-cleaning",
+        "blog": "blog",
         "post_limit": 3,
         "columns_desktop": 3,
         "color_scheme": "",
         "show_image": true,
         "show_date": true,
         "show_author": false,
-        "show_view_all": true,
+        "show_view_all": false,
         "padding_top": 60,
         "padding_bottom": 60
       }

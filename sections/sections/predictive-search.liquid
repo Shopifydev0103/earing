@@ -12,7 +12,7 @@
         class="predictive-search__results-groups-wrapper{% unless predictive_search.resources.products.size > 0 %} predictive-search__results-groups-wrapper--no-products{% endunless %}{% unless predictive_search.resources.queries.size > 0 or predictive_search.resources.collections.size > 0 %} predictive-search__results-groups-wrapper--no-suggestions{% endunless %}"
       >
     {%- endif -%}
-    {%- if first_column_results_size > 0 -%}
+    {% comment %} {%- if first_column_results_size > 0 -%}
       <div class="predictive-search__result-group">
     {%- endif -%}
     {%- if predictive_search.resources.queries.size > 0 or predictive_search.resources.collections.size > 0 -%}
@@ -61,15 +61,15 @@
           {%- endfor -%}
         </ul>
       </div>
-    {%- endif -%}
+    {%- endif -%} {% endcomment %}
     {%- if predictive_search.resources.articles.size > 0 or predictive_search.resources.pages.size > 0 -%}
       <div class="predictive-search__pages-wrapper">
-        <h2
+        {% comment %} <h2
           id="predictive-search-pages-desktop"
           class="predictive-search__heading text-body caption-with-letter-spacing"
         >
           {{- 'templates.search.pages' | t -}}
-        </h2>
+        </h2> {% endcomment %}
         <ul
           id="predictive-search-results-pages-list-desktop"
           class="predictive-search__results-list list-unstyled"
@@ -117,12 +117,12 @@
       <div class="predictive-search__result-group">
         {%- if predictive_search.resources.products.size > 0 -%}
           <div>
-            <h2
+            {% comment %} <h2
               id="predictive-search-products"
               class="predictive-search__heading text-body caption-with-letter-spacing"
             >
               {{- 'templates.search.products' | t -}}
-            </h2>
+            </h2> {% endcomment %}
             <ul
               id="predictive-search-results-products-list"
               class="predictive-search__results-list list-unstyled"

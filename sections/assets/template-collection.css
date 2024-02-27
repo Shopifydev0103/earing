@@ -124,6 +124,10 @@ color: black;
   max-width: 100% !important;
   width: 100% !important;
 }
+.custom-pointer__click {
+  display: flex;
+  align-items: center;
+}
 .custom-pointer__click:hover .custom-pointer path,
 .custom-pointer__click:hover .custom-pointer rect {
   cursor: pointer;
