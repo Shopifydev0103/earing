@@ -88,7 +88,7 @@
               {% render 'product-Tabs',
                 product: product
               %}
-            {%- when 'text' -%}
+                        {%- when 'text' -%}
               <p
                 class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                 {{ block.shopify_attributes }}
@@ -236,7 +236,7 @@
                   Choose Qty:
                   <span class="quantity__rules-cart no-js-hidden{% if cart_qty == 0 %} hidden{% endif %}">
                     {%- render 'loading-spinner' -%}
-                    <span>({{- 'products.product.quantity.in_cart_html' | t: quantity: cart_qty -}})</span>
+                    {% comment %} <span>({{- 'products.product.quantity.in_cart_html' | t: quantity: cart_qty -}})</span> {% endcomment %}
                   </span>
                 </label>
                 <div class="width-203p price-per-item__container">
@@ -422,7 +422,22 @@
                 block: block,
                 share_link: share_url
               %}
-
+            {%when "socialshare" %}
+              <div class="display-flex-row gap-30">
+              <span class="social-share">SHARE: </span>
+              <div class="display-flex-row gap-20">
+                  {%- if block.settings.social_url_facebook != blank -%}
+                      <a href="{{ block.settings.social_url_facebook }}">{% render 'icon-facebook1' %}</a>
+                  {%- endif -%}
+                  {%- if block.settings.social_url_twitter != blank -%}
+                    <a href="{{ block.settings.social_url_twitter }}">{% render 'icon-twitter1' %}</a>
+                  {%- endif -%}
+                  {%- if block.settings.social_url_mana != blank -%}
+                    <a href="{{ block.settings.social_url_mana }}">{% render 'icon-mana' %}</a>
+                  {%- endif -%}
+                </div>
+              </div>   
+                
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'buy_buttons' -%}
@@ -694,6 +709,17 @@
       "type": "@app"
     },
     {
+      "type": "Pickup",
+      "name": "Pickup",
+      "settings": [
+          {
+            "type": "text",
+            "id": "pickup_text",
+            "label": "pickup text"
+          }
+      ]
+    },
+    {
       "type": "Tabs",
       "name": "Tabs",
       "settings": [
@@ -701,6 +727,28 @@
           "type": "inline_richtext",
           "id": "text",
           "label": "Tabs"
+        }
+      ]
+    },
+    {
+      "type": "socialshare",
+      "name": "social share",
+      "settings": [
+        {
+          "type": "text",
+          "id": "social_url_facebook",
+          "label": "Facebook"
+        },
+        
+        {
+          "type": "text",
+          "id": "social_url_twitter",
+          "label": "Twitter"
+        },
+        {
+          "type": "text",
+          "id": "social_url_mana",
+          "label": "Mana"
         }
       ]
     },
@@ -856,22 +904,6 @@
       "settings": [
         {
           "type": "select",
-          "id": "materials_picker_type",
-          "options": [
-            {
-              "value": "dropdown",
-              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__1.label"
-            },
-            {
-              "value": "button",
-              "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
-            }
-          ],
-          "default": "button",
-          "label": "materials_picker_type"
-        },
-        {
-          "type": "select",
           "id": "picker_type",
           "options": [
             {
@@ -884,7 +916,7 @@
             }
           ],
           "default": "button",
-          "label": "size_picker_type"
+          "label": "picker_type"
         },
 
 
@@ -933,7 +965,7 @@
         }
       ]
     },
-    {
+  {
       "type": "description",
       "name": "t:sections.main-product.blocks.description.name",
       "limit": 1
@@ -959,6 +991,7 @@
         }
       ]
     },
+    
     {
       "type": "custom_liquid",
       "name": "t:sections.custom-liquid.name",

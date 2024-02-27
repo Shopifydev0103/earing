@@ -108,6 +108,15 @@ html.no-js .no-js-inline {
 html.no-js .no-js-hidden {
   display: none !important;
 }
+.pb-15 {
+  padding-bottom: 15px;
+}
+.p-20 {
+  padding: 20px;
+}
+.pt-40 {
+  padding-top: 40px !important;
+}
 
 .page-width {
   max-width: var(--page-width);
@@ -705,10 +714,10 @@ a:not([href]) {
   cursor: not-allowed;
 }
 
-.circle-divider::after {
+/* .circle-divider::after {
   content: '\2022';
   margin: 0 1.3rem 0 1.5rem;
-}
+} */
 
 .circle-divider:last-of-type::after {
   display: none;
@@ -732,13 +741,14 @@ hr {
   text-decoration: none;
   color: currentColor;
   display: block;
-  /* text-align: center; */
   font-family: Poppins;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 24px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 26px;
   letter-spacing: 0.02em;
-  color: black;
+  text-align: left;
+  color: #000;
+  
 }
 
 .placeholder {
@@ -859,14 +869,35 @@ summary::-webkit-details-marker {
 .align-center {
   align-items: center;
 }
+.width-100 {
+  width: 100%;
+}
 .width-70 {
   width: 70%;
 }
+.width-60 {
+  width: 60%;
+}
 .width-50 {
-  width: 50%;
+  width: 50% !important;
+}
+.width-40 {
+  width: 40%;
 }
 .width-203p {
   width: 203px;
+}
+.gap-30 {
+  gap: 30px;
+}
+.gap-20 {
+  gap: 20px;
+}
+
+@media screen and(max-width: 375px) {
+  .width-70 {
+    width: 100;
+  }
 }
 
 
@@ -1544,8 +1575,8 @@ button.shopify-payment-button__button--unbranded {
   line-height: 22px;
   letter-spacing: 0em;
   text-align: left;
-  color: black;
-  background: white;
+  color: white;
+  background: black;
   width: 240px;
   height: 64px;
 
@@ -2069,7 +2100,7 @@ details[open]>.share-button__fallback {
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
-  min-height: 10rem;
+  min-height: 5rem;
   resize: none;
 }
 

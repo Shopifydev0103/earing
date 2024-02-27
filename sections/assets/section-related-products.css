@@ -4,4 +4,11 @@
 
 .related-products__heading {
   margin: 0 0 3rem;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 64px;
+  letter-spacing: 0.02em;
+  color: #000;  
 }

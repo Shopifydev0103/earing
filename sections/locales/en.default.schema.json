@@ -1480,93 +1480,13 @@
       }
     },
     "newsletter": {
-      "name": "newsletter",
+      "name": "Email signup",
       "settings": {
-        "image": {
-          "label": "Image"
+        "full_width": {
+          "label": "Make section full width"
         },
-        "height": {
-          "options__1": {
-            "label": "Adapt to image"
-          },
-          "options__2": {
-            "label": "Small"
-          },
-          "options__3": {
-            "label": "Medium"
-          },
-          "options__4": {
-            "label": "Large"
-          },
-          "label": "Image height"
-        },
-        "desktop_image_width": {
-          "options__1": {
-            "label": "Small"
-          },
-          "options__2": {
-            "label": "Medium"
-          },
-          "options__3": {
-            "label": "Large"
-          },
-          "label": "Desktop image width",
-          "info": "Image is automatically optimized for mobile."
-        },
-        "layout": {
-          "options__1": {
-            "label": "Image first"
-          },
-          "options__2": {
-            "label": "Image second"
-          },
-          "label": "Desktop image placement",
-          "info": "Image first is the default mobile layout."
-        },
-        "desktop_content_alignment": {
-          "options__1": {
-            "label": "Left"
-          },
-          "options__2": {
-            "label": "Center"
-          },
-          "options__3": {
-            "label": "Right"
-          },
-          "label": "Desktop content alignment"
-        },
-        "desktop_content_position": {
-          "options__1": {
-            "label": "Top"
-          },
-          "options__2": {
-            "label": "Middle"
-          },
-          "options__3": {
-            "label": "Bottom"
-          },
-          "label": "Desktop content position"
-        },
-        "content_layout": {
-          "options__1": {
-            "label": "No overlap"
-          },
-          "options__2": {
-            "label": "Overlap"
-          },
-          "label": "Content layout"
-        },
-        "mobile_content_alignment": {
-          "options__1": {
-            "label": "Left"
-          },
-          "options__2": {
-            "label": "Center"
-          },
-          "options__3": {
-            "label": "Right"
-          },
-          "label": "Mobile content alignment"
+        "paragraph": {
+          "content": "Each email subscription creates a customer account. [Learn more](https:\/\/help.shopify.com\/manual\/customers)"
         }
       },
       "blocks": {
@@ -1578,70 +1498,20 @@
             }
           }
         },
-        "caption": {
-          "name": "Caption",
+        "paragraph": {
+          "name": "Subheading",
           "settings": {
-            "text": {
-              "label": "Text"
-            },
-            "text_style": {
-              "label": "Text style",
-              "options__1": {
-                "label": "Subtitle"
-              },
-              "options__2": {
-                "label": "Uppercase"
-              }
-            },
-            "caption_size": {
-              "label": "Text size",
-              "options__1": {
-                "label": "Small"
-              },
-              "options__2": {
-                "label": "Medium"
-              },
-              "options__3": {
-                "label": "Large"
-              }
+            "paragraph": {
+              "label": "Description"
             }
           }
         },
-        "text": {
-          "name": "Text",
-          "settings": {
-            "text": {
-              "label": "Content"
-            },
-            "text_style": {
-              "label": "Text style",
-              "options__1": {
-                "label": "Body"
-              },
-              "options__2": {
-                "label": "Subtitle"
-              }
-            }
-          }
-        },
-        "button": {
-          "name": "Button",
-          "settings": {
-            "button_label": {
-              "label": "Button label",
-              "info": "Leave the label blank to hide the button."
-            },
-            "button_link": {
-              "label": "Button link"
-            },
-            "outline_button": {
-              "label": "Use outline button style"
-            }
-          }
+        "email_form": {
+          "name": "Email form"
         }
       },
       "presets": {
-        "name": "newsletter"
+        "name": "Email signup"
       }
     },
     "custom-image-with-text": {
@@ -2929,41 +2799,6 @@
       },
       "presets": {
         "name": "Multicolumn"
-      }
-    },
-    "newsletter": {
-      "name": "Email signup",
-      "settings": {
-        "full_width": {
-          "label": "Make section full width"
-        },
-        "paragraph": {
-          "content": "Each email subscription creates a customer account. [Learn more](https:\/\/help.shopify.com\/manual\/customers)"
-        }
-      },
-      "blocks": {
-        "heading": {
-          "name": "Heading",
-          "settings": {
-            "heading": {
-              "label": "Heading"
-            }
-          }
-        },
-        "paragraph": {
-          "name": "Subheading",
-          "settings": {
-            "paragraph": {
-              "label": "Description"
-            }
-          }
-        },
-        "email_form": {
-          "name": "Email form"
-        }
-      },
-      "presets": {
-        "name": "Email signup"
       }
     },
     "email-signup-banner": {

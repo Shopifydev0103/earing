@@ -108,7 +108,7 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-          {% comment %} {%- if show_dynamic_checkout -%}
+        {% comment %} {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}  {% endcomment %}
           <div class="payment-product__button"><a href="{{ product.url }}" >Buy Now</a></div>
@@ -118,7 +118,7 @@
             name="add"
             class="custom-addcart__button product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
             {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-              disabled
+              disabled 
             {% endif %}
           > 
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -350,7 +350,7 @@
     <div class="header-search-with-cart">
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
-      {% comment %} {%- if shop.customer_accounts_enabled -%}
+       {%- if shop.customer_accounts_enabled -%}
         <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
           {% render 'icon-account' %}
           <span class="visually-hidden">
@@ -370,56 +370,27 @@
           {%- when '@app' -%}
             {% render block %}
         {%- endcase -%}
-      {%- endfor -%} {% endcomment %}
+      {%- endfor -%} 
+       {% render 'Account' %} 
       
-      <a href="{{  }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        <span>
-          <div class="flex-row">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle class="stroke-white" cx="11.5789" cy="7.27803" r="4.77803" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path class="stroke-white" fill-rule="evenodd" clip-rule="evenodd" d="M4.00002 18.7013C3.99873 18.3654 4.07385 18.0336 4.2197 17.7311C4.67736 16.8157 5.96798 16.3306 7.03892 16.1109C7.81128 15.9461 8.59431 15.836 9.38217 15.7814C10.8408 15.6533 12.3079 15.6533 13.7666 15.7814C14.5544 15.8366 15.3374 15.9467 16.1099 16.1109C17.1808 16.3306 18.4714 16.77 18.9291 17.7311C19.2224 18.3479 19.2224 19.0639 18.9291 19.6807C18.4714 20.6418 17.1808 21.0812 16.1099 21.2917C15.3384 21.4633 14.5551 21.5766 13.7666 21.6304C12.5794 21.731 11.3866 21.7494 10.1968 21.6853C9.92221 21.6853 9.65677 21.6853 9.38217 21.6304C8.59663 21.5772 7.81632 21.464 7.04807 21.2917C5.96798 21.0812 4.68652 20.6418 4.2197 19.6807C4.0746 19.3746 3.99955 19.04 4.00002 18.7013Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span aria-hidden="true" class="custom-dis-none custom-search-font color-icon-text">Account</span>
-          </div>
-        </span>
-        {% comment %} <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-          <div class="cart-count-bubble">
-            {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </div>
-        {%- endif -%} {% endcomment %}
-      </a>
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        {% comment %} {%- liquid
+        {%- liquid
           if cart == empty
             render 'icon-cart-empty'
           else
             render 'icon-cart'
           endif
-        -%} {% endcomment %}
-        <span>
-          <div class="flex-row">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="stroke-white" d="M15.7729 9.30504V6.27304C15.7729 4.18904 14.0839 2.50004 12.0009 2.50004C9.91688 2.49104 8.21988 4.17204 8.21088 6.25604V6.27304V9.30504" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path class="stroke-white" fill-rule="evenodd" clip-rule="evenodd" d="M16.7422 21.0004H7.25778C4.90569 21.0004 3 19.0954 3 16.7454V11.2294C3 8.87937 4.90569 6.97437 7.25778 6.97437H16.7422C19.0943 6.97437 21 8.87937 21 11.2294V16.7454C21 19.0954 19.0943 21.0004 16.7422 21.0004Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              
-              <span aria-hidden="true" class="custom-dis-none custom-search-font color-icon-text">Cart </span>
-              <span aria-hidden="true" class="custom-search-font color-icon-text">({{ cart.item_count }})</span>
-          </div>
-        </span>
-        {% comment %} <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+        -%}
+        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
-          <div class="cart-count-bubble">
+          <div class="">
             {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
+              
+              <span aria-hidden="true"><span class="custom-dis-none">Cart </span>({{ cart.item_count }})</span>
             {%- endif -%}
             <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
           </div>
-        {%- endif -%} {% endcomment %}
+        {%- endif -%}
       </a>
     </div>
     </div>

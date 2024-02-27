@@ -17,6 +17,13 @@
   %}
 {% endcomment %}
 
+<style>
+  .custom-product__type-button--label {
+    display: flex !important;
+    align-items: center !important;
+  }
+</style>
+
 
 {%- liquid
   assign variants_available_arr = product.variants | map: 'available'
@@ -98,7 +105,7 @@
         class="disabled"
       {% endif %}
     >
-    <label  for="{{ input_id }}">
+    <label class="custom-product__type-button--label"  for="{{ input_id }}">
       {{ value -}}
       {{ label_unavailable }}
     </label>

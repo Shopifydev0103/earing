@@ -23,10 +23,22 @@
 
 .totals__total {
   margin-top: .5rem;
+font-family: Poppins;
+font-size: 24px !important;
+font-weight: 600;
+line-height: 26px;
+letter-spacing: 0.02em;
+color: #000;
 }
 
 .totals__total-value {
   font-size: 1.8rem;
+font-family: Poppins;
+font-size: 24px;
+font-weight: 600;
+line-height: 26px;
+letter-spacing: 0.02em;
+color: #000;
 }
 
 .cart__ctas + .totals {

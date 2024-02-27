@@ -17,9 +17,9 @@
 
 .drawer__inner {
   height: 100%;
-  width: 40rem;
+  /* width: 40rem; */
   max-width: calc(100vw - 3rem);
-  padding: 0 1.5rem;
+  padding: 0 40px;
   border: 0.1rem solid rgba(var(--color-foreground), 0.2);
   border-right: 0;
   overflow: hidden;
@@ -73,7 +73,7 @@ cart-drawer:not(.is-empty) .cart-drawer__collection {
   padding: 1.5rem 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .drawer__heading {
@@ -87,8 +87,8 @@ cart-drawer:not(.is-empty) .cart-drawer__collection {
   min-height: 4.4rem;
   box-shadow: 0 0 0 0.2rem rgba(var(--color-button), 0);
   position: absolute;
-  top: 10px;
-  right: -10px;
+  /* top: 10px; */
+  right: -14px;
   color: rgb(var(--color-foreground));
   background-color: transparent;
   border: none;
@@ -313,7 +313,7 @@ cart-drawer-items {
 
 .cart-drawer .tax-note {
   margin: 1.2rem 0 1rem auto;
-  text-align: left;
+text-align: center;
 }
 
 .cart-drawer .product-option dd {
@@ -326,7 +326,29 @@ cart-drawer-items {
 
 .cart-drawer .cart__checkout-button {
   max-width: none;
+  background-color: black;
+  color: white;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  text-align: center;
+
 }
+.custom-buttonm-width-small {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%
+}
+.custom-buttonm-width-small button,
+.custom-buttonm-width-small small {
+  width: 100%;
+  text-align: center;
+}
+
 
 .drawer__footer .cart__dynamic-checkout-buttons {
   max-width: 100%;
@@ -396,6 +418,75 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 .cart-drawer .quantity-popover__info + .cart-item__error {
   margin-top: 0.2rem;
 }
+/* custom checkbox */
+/* This css is for normalizing styles. You can skip this. */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-link__terms {
+  text-decoration: underline;
+  color: black;
+}
+
+
+
+
+.new {
+  padding: 15px 0;
+}
+
+.form-group {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.form-group label {
+  position: relative;
+  cursor: pointer;
+}
+
+.form-group label:before {
+  content:'';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid #D8D8D8;
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.form-group input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 9px;
+  width: 6px;
+  height: 14px; 
+  border: 1px solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+
+
 
 @media screen and (min-width: 750px) {
   .cart-drawer .cart-item__quantity--info quantity-popover > * {

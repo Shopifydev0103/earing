@@ -1,5 +1,74 @@
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
 
+
+<style>
+  .page-padding {
+    padding: 0 100px;
+  }
+  .custom-background-none {
+    background: none !important;
+  }
+  .custom-comments--borderbottom {
+    border-bottom: 1px solid #D8D8D8;
+  }
+  .custom-post-comment {
+      font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    text-align: center;
+
+    }
+    .custom-comment--autor {
+      font-family: Poppins;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.02em;
+      text-align: left;
+      color: #000;
+      text-transform: none;
+    }
+    .custom-comment-date {
+      font-family: Poppins;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: #999999;
+      text-transform: none;
+
+
+    }
+    .custom-comment-tilte {
+    font-family: Poppins;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 64px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #000;
+    }
+    .custom-commmet--content {
+   font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #6E7172;
+    padding: 20px 0;
+    }
+    .custom-footer {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      }
+</style>
+{% render 'breadcrumbs' %}
+
 <article class="article-template" itemscope itemtype="http://schema.org/BlogPosting">
   {%- for block in section.blocks -%}
     {%- case block.type -%}
@@ -7,10 +76,32 @@
         <div class="page-width page-width--narrow">
           {% render block %}
         </div>
+      {%- when 'title' -%}
+        <header
+          class="custom-article-header page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <h1
+            class="article-template__title"
+            itemprop="headline"
+          >
+            {{ article.title | escape }}
+          </h1>
+          {%- if block.settings.blog_show_date -%}
+            <span class="custom-article-title_date circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
+              {{- article.published_at | time_tag: format: 'date' -}}
+            </span>
+          {%- endif -%}
+          {%- if block.settings.blog_show_author -%}
+            <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="name">{{ article.author }}</span>
+            </span>
+          {%- endif -%}
+        </header>
       {%- when 'featured_image' -%}
         {%- if article.image -%}
           <div
-            class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            class="width-60 article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             {{ block.shopify_attributes }}
           >
             <div
@@ -42,32 +133,11 @@
           </div>
         {%- endif -%}
 
-      {%- when 'title' -%}
-        <header
-          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          <h1
-            class="article-template__title"
-            itemprop="headline"
-          >
-            {{ article.title | escape }}
-          </h1>
-          {%- if block.settings.blog_show_date -%}
-            <span class="circle-divider caption-with-letter-spacing" itemprop="dateCreated pubdate datePublished">
-              {{- article.published_at | time_tag: format: 'date' -}}
-            </span>
-          {%- endif -%}
-          {%- if block.settings.blog_show_author -%}
-            <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <span itemprop="name">{{ article.author }}</span>
-            </span>
-          {%- endif -%}
-        </header>
+      
 
       {%- when 'content' -%}
         <div
-          class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="width-60 page-padding custom-article--content  article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           itemprop="articleBody"
           {{ block.shopify_attributes }}
         >
@@ -82,47 +152,64 @@
           {% assign share_url = request.origin | append: article.url %}
           {% render 'share-button', block: block, share_link: share_url %}
         </div>
+      {% when "socialshare" %}
+            <div class="display-flex-row gap-30 page-width page-padding pt-40">
+              <span class="social-share">SHARE: </span>
+              <div class="display-flex-row gap-20">
+                  {%- if block.settings.social_url_facebook != blank -%}
+                      <a href="{{ block.settings.social_url_facebook }}">{% render 'icon-facebook1' %}</a>
+                  {%- endif -%}
+                  {%- if block.settings.social_url_twitter != blank -%}
+                    <a href="{{ block.settings.social_url_twitter }}">{% render 'icon-twitter1' %}</a>
+                  {%- endif -%}
+                  {%- if block.settings.social_url_mana != blank -%}
+                    <a href="{{ block.settings.social_url_mana }}">{% render 'icon-mana' %}</a>
+                  {%- endif -%}
+                </div>
+            </div>
     {%- endcase -%}
   {%- endfor -%}
 
-  <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  {% comment %} <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
       <span class="icon-wrap">{% render 'icon-arrow' %}</span>
       {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
     </a>
-  </div>
+  </div> {% endcomment %}
   {%- if blog.comments_enabled? -%}
-    <div class="article-template__comment-wrapper background-secondary">
+    <div class="custom-background-none article-template__comment-wrapper background-secondary">
       <div
         id="comments"
-        class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="width-60 page-padding page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       >
         {%- if article.comments_count > 0 -%}
           {%- assign anchorId = '#Comments-' | append: article.id -%}
 
-          <h2 id="Comments-{{ article.id }}" tabindex="-1">
-            {{ 'blogs.article.comments' | t: count: article.comments_count }}
+          <h2 id="Comments-{{ article.id }}" tabindex="-1" class="custom-comment-tilte">
+            {% comment %} {{ 'blogs.article.comments' | t: count: article.comments_count }} {% endcomment %}
+            Comments
           </h2>
           {% paginate article.comments by 5 %}
-            <div class="article-template__comments">
+            <div class=" article-template__comments">
               {%- if comment.status == 'pending' and comment.content -%}
                 <article id="{{ comment.id }}" class="article-template__comments-comment">
-                  {{ comment.content }}
                   <footer class="right">
                     <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span>
                   </footer>
+                  {{ comment.content }}
                 </article>
               {%- endif -%}
 
               {%- for comment in article.comments -%}
-                <article id="{{ comment.id }}" class="article-template__comments-comment">
-                  {{ comment.content }}
-                  <footer class="right">
-                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span
-                    ><span class="caption-with-letter-spacing">
+                <article id="{{ comment.id }}" class="custom-commmet--content article-template__comments-comment">
+                  <footer class="pb-15 left custom-footer">
+                    <span class="custom-comment--autor circle-divider caption-with-letter-spacing">{{ comment.author }}</span
+                    >
+                      <span class="custom-comment-date caption-with-letter-spacing">
                       {{- comment.created_at | time_tag: format: 'date' -}}
                     </span>
                   </footer>
+                  {{ comment.content }}
                 </article>
               {%- endfor -%}
               {% render 'pagination', paginate: paginate, anchor: anchorId %}
@@ -161,12 +248,12 @@
               {%- endfor -%}
             </ul>
           {%- elsif form.posted_successfully? -%}
-            <div class="form-status-list form__message" role="status">
+            {% comment %} <div class="form-status-list form__message" role="status">
               <h3 class="form-status" tabindex="-1" autofocus>
                 {% render 'icon-success' %}
                 {{ post_message | t }}
               </h3>
-            </div>
+            </div> {% endcomment %}
           {%- endif -%}
 
           <div
@@ -180,7 +267,7 @@
                   type="text"
                   name="comment[author]"
                   id="CommentForm-author"
-                  class="field__input"
+                  class="custom-comments--borderbottom field__input"
                   autocomplete="name"
                   value="{{ form.author }}"
                   aria-required="true"
@@ -192,8 +279,8 @@
                   placeholder="{{ 'blogs.article.name' | t }}"
                 >
                 <label class="field__label" for="CommentForm-author">
-                  {{- 'blogs.article.name' | t }}
-                  <span aria-hidden="true">*</span></label
+                  Name
+                  <span aria-hidden="true"></span></label
                 >
                 {%- if form.errors contains 'author' -%}
                   <small id="CommentForm-author-error">
@@ -211,7 +298,7 @@
                   name="comment[email]"
                   id="CommentForm-email"
                   autocomplete="email"
-                  class="field__input"
+                  class="custom-comments--borderbottom field__input"
                   value="{{ form.email }}"
                   autocorrect="off"
                   autocapitalize="off"
@@ -224,8 +311,8 @@
                   placeholder="{{ 'blogs.article.email' | t }}"
                 >
                 <label class="field__label" for="CommentForm-email">
-                  {{- 'blogs.article.email' | t }}
-                  <span aria-hidden="true">*</span></label
+                  Your E-mail
+                  <span aria-hidden="true"></span></label
                 >
                 {%- if form.errors contains 'email' -%}
                   <small id="CommentForm-email-error">
@@ -239,11 +326,11 @@
               </div>
             </div>
             <div class="field field--with-error">
-              <textarea
+              <input
                 rows="5"
                 name="comment[body]"
                 id="CommentForm-body"
-                class="text-area field__input"
+                class="custom-comments--borderbottom text-area field__input"
                 aria-required="true"
                 required
                 {% if form.errors contains 'body' %}
@@ -251,10 +338,10 @@
                   aria-describedby="CommentForm-body-error"
                 {% endif %}
                 placeholder="{{ 'blogs.article.message' | t }}"
-              >{{ form.body }}</textarea>
+              >{{ form.body }}
               <label class="form__label field__label" for="CommentForm-body">
                 {{- 'blogs.article.message' | t }}
-                <span aria-hidden="true">*</span></label
+                <span aria-hidden="true"></span></label
               >
             </div>
             {%- if form.errors contains 'body' -%}
@@ -270,7 +357,7 @@
           {%- if blog.moderated? -%}
             <p class="article-template__comment-warning caption">{{ 'blogs.article.moderated' | t }}</p>
           {%- endif -%}
-          <input type="submit" class="button" value="{{ 'blogs.article.post' | t }}">
+          <input type="submit" class="button width-50 custom-post-comment" value="Post Comment">
         {% endform %}
       </div>
     </div>
@@ -393,7 +480,30 @@
           "content": "t:sections.main-article.blocks.share.settings.title_info.content"
         }
       ]
+    },
+    {
+      "type": "socialshare",
+      "name": "social share",
+      "settings": [
+        {
+          "type": "text",
+          "id": "social_url_facebook",
+          "label": "Facebook"
+        },
+        
+        {
+          "type": "text",
+          "id": "social_url_twitter",
+          "label": "Twitter"
+        },
+        {
+          "type": "text",
+          "id": "social_url_mana",
+          "label": "Mana"
+        }
+      ]
     }
+    
   ]
 }
 {% endschema %}

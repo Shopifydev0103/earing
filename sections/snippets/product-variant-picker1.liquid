@@ -9,38 +9,18 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+
 <style>
-  .picker_type--button {
-    width: 203px;
-    justify-content: space-between;
-    display: flex;
-    height: 52px;
-  }
-  .picker_type--button label {
-    height: 52px;
-    align-items: center;
-
-    
-  }
-  .custom-product-picker_type--container  {
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-    align-items: center;
-    margin-bottom: 40px;
-  }
-  .form__label {
-    font-family: Poppins;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-
+  .product-picker__font {
+font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+color: #6E7172;
   }
 </style>
-
-
 {%- unless product.has_only_default_variant -%}
   <variant-selects
     id="variant-selects-{{ section.id }}"
@@ -53,6 +33,86 @@
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
+    {%- if option.name == "Materials" -%}
+        
+      
+      {%- liquid
+        assign swatch_count = option.values | map: 'swatch' | compact | size
+        assign materials_picker_type = block.settings.materials_picker_type
+
+        if swatch_count > 0 and block.settings.swatch_shape != 'none'
+          if block.settings.materials_picker_type == 'dropdown'
+            assign materials_picker_type = 'swatch_dropdown'
+          else
+            assign materials_picker_type = 'swatch'
+          endif
+        endif
+      -%}
+      {%- if materials_picker_type == 'swatch' -%}
+        <div class="js product-form__input product-form__input--swatch">
+          <div class="form__label">
+            {{ option.name }}:
+            <span data-selected-swatch-value="{{ option.name }}">
+              {{- option.selected_value -}}
+            </span>
+          </div>
+          <div class="materials-picker">
+            {% render 'materials_product-variant-options',
+              product: product,
+              option: option,
+              block: block,
+              materials_picker_type: materials_picker_type
+            %}
+          </div>
+        </div>
+      {%- elsif materials_picker_type == 'button' -%}
+        <div class="display-flex-row width-70 justify-content--sp align-center product-picker__font js product-form__input product-form__input--pill">
+          <div class="form__label">Choose {{ option.name }}:</div>
+          <div class="display-flex-row justify-content--sp width-203p materials-picker">
+          {% render 'materials_product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            materials_picker_type: materials_picker_type
+          %}
+          </div>
+        </div>
+      {%- else -%}
+        <div class="product-form__input product-form__input--dropdown">
+          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+            {{ option.name }}
+          </label>
+          <div class="select">
+            {%- if materials_picker_type == 'swatch_dropdown' -%}
+              <span
+                data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
+                class="dropdown-swatch"
+              >
+                {% render 'swatch', swatch: option.selected_value.swatch, shape: block.settings.swatch_shape %}
+              </span>
+            {%- endif -%}
+            <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select"
+              name="options[{{ option.name | escape }}]"
+              form="{{ product_form_id }}"
+            >
+              {% render 'materials_product-variant-options',
+                product: product,
+                option: option,
+                block: block,
+                materials_picker_type: materials_picker_type
+              %}
+            </select>
+            {% render 'icon-caret' %}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+
+    {%- if option.name == "Size" -%}
+        
       
       {%- liquid
         assign swatch_count = option.values | map: 'swatch' | compact | size
@@ -66,32 +126,26 @@
           endif
         endif
       -%}
-
-      {% liquid
-        assign picker_type = block.settings.picker_type
-        if option.name == "Materials"
-          assign picker_type = 'button'
-        endif
-      %}
-      {%- if picker_type == 'swatch'-%}
-        <fieldset class="js product-form__input product-form__input--swatch">
+      {%- if picker_type == 'swatch' -%}
+        <div class="js product-form__input product-form__input--swatch">
           <div class="form__label">
             {{ option.name }}:
             <span data-selected-swatch-value="{{ option.name }}">
               {{- option.selected_value -}}
             </span>
           </div>
-          {% render 'product-variant-options',
-            product: product,
-            option: option,
-            block: block,
-            picker_type: picker_type
-          %}
-        </fieldset>
+          <div class="product-variant-options">
+            {% render 'product-variant-options',
+              product: product,
+              option: option,
+              block: block,
+              picker_type: picker_type
+            %}
+          </div>
+        </div>
       {%- elsif picker_type == 'button' -%}
-        <fieldset class="custom-product-picker_type--container js product-form__input product-form__input--pill">
-          <div class="form__label">choose {{ option.name }}: </div>
-          <div class="picker_type--button">
+        <div class="js product-form__input product-form__input--pill">
+          <div class="form__label">{{ option.name }}</div>
           {% render 'product-variant-options',
             product: product,
             option: option,
@@ -99,13 +153,12 @@
             picker_type: picker_type
           %}
         </div>
-        </fieldset>
       {%- else -%}
-        <div class="custom-product-picker_type--container product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+        <div class="display-flex-row width-70 justify-content--sp align-center product-form__input product-form__input--dropdown">
+          <label class=" form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             Choose {{ option.name }}:
           </label>
-          <div class="width-203p select">
+          <div class=" select">
             {%- if picker_type == 'swatch_dropdown' -%}
               <span
                 data-selected-dropdown-swatch="options[{{ option.name | escape }}]"
@@ -131,6 +184,7 @@
           </div>
         </div>
       {%- endif -%}
+    {%- endif -%}
     {%- endfor -%}
     <script type="application/json">
       {{ product.variants | json }}

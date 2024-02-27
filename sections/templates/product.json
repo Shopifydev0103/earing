@@ -26,7 +26,6 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "materials_picker_type": "button",
             "picker_type": "dropdown",
             "swatch_shape": "circle"
           }
@@ -43,15 +42,25 @@
             "show_gift_card_recipient": true
           }
         },
-        "description": {
-          "type": "description",
+        "tabs_Hm7W4G": {
+          "type": "Tabs",
           "settings": {
+            "text": ""
           }
         },
         "share": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": "Share"
+          }
+        },
+        "socialshare_3bXY9Q": {
+          "type": "socialshare",
+          "settings": {
+            "social_url_facebook": "asdasd",
+            "social_url_twitter": "asdasdasd",
+            "social_url_mana": "asdasd"
           }
         }
       },
@@ -62,8 +71,9 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "description",
-        "share"
+        "tabs_Hm7W4G",
+        "share",
+        "socialshare_3bXY9Q"
       ],
       "settings": {
         "enable_sticky_info": false,
