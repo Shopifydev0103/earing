@@ -1,6 +1,61 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+.title {
+font-family: Poppins;
+font-size: 60px;
+font-weight: 600;
+line-height: 70px;
+letter-spacing: 0.02em;
+text-align: center;
+color: #000;
+
+}
+.login input {
+  border-bottom: 1px solid #D8D8D8 !important;
+
+}
+.forgot-password {
+  font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+color: #000;
+text-decoration: none;
+padding: 20px 0;
+
+}
+.custom-create-account {
+  font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+color: #000;
+text-decoration: none;
+}
+.cancel {
+  font-family: Poppins;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: left;
+text-decoration: none;
+
+}
+.custom-resetpassword-title {
+font-family: Poppins;
+font-size: 60px;
+font-weight: 600;
+line-height: 70px;
+letter-spacing: 0.02em;
+color: #000;
+
+}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -13,15 +68,15 @@
     }
   }
 {%- endstyle -%}
-
+{% render 'breadcrumbs' %}
 <div class="customer login section-{{ section.id }}-padding">
-  <h1 id="recover" tabindex="-1">
+  <h1 id="recover" tabindex="-1" class="custom-resetpassword-title">
     {{ 'customer.recover_password.title' | t }}
   </h1>
-  <div>
-    <p>
+  <div class="width-80">
+    {% comment %} <p>
       {{ 'customer.recover_password.subtext' | t }}
-    </p>
+    </p> {% endcomment %}
 
     {%- form 'recover_customer_password' -%}
       {% assign recover_success = form.posted_successfully? %}
@@ -57,20 +112,20 @@
         </small>
       {%- endif -%}
 
-      <button>
-        {{ 'customer.login_page.submit' | t }}
+      <button class="width-100">
+        Login
       </button>
 
-      <a href="#login">
+      <a href="#login" class="cancel">
         {{ 'customer.login_page.cancel' | t }}
       </a>
     {%- endform -%}
   </div>
 
-  <h1 id="login" tabindex="-1">
+  <h1 id="login" tabindex="-1" class="title">
     {{ 'customer.login_page.title' | t }}
   </h1>
-  <div>
+  <div class="login">
     {%- if recover_success == true -%}
       <h3 class="form__message" tabindex="-1" autofocus>
         <svg aria-hidden="true" focusable="false" viewBox="0 0 13 13">
@@ -132,16 +187,16 @@
           </label>
         </div>
 
-        <a href="#recover">
+        <a href="#recover" class="forgot-password">
           {{ 'customer.login_page.forgot_password' | t }}
         </a>
       {%- endif -%}
 
-      <button>
+      <button class="width-100">
         {{ 'customer.login_page.sign_in' | t }}
       </button>
 
-      <a href="{{ routes.account_register_url }}">
+      <a href="{{ routes.account_register_url }}" class="custom-create-account">
         {{ 'customer.login_page.create_account' | t }}
       </a>
     {%- endform -%}
@@ -150,7 +205,7 @@
   {%- if shop.checkout.guest_login -%}
     <div>
       <hr>
-      <h2>{{ 'customer.login_page.guest_title' | t }}</h2>
+      <h2 >{{ 'customer.login_page.guest_title' | t }}</h2>
 
       {%- form 'guest_login' -%}
         <button>
