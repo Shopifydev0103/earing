@@ -2109,6 +2109,7 @@ details[open]>.share-button__fallback {
   font-weight: var(--font-body-weight);
   min-height: 5rem;
   resize: none;
+  overflow: hidden;
 }
 
 input[type='checkbox'] {
